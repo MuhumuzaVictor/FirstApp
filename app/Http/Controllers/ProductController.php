@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ProductController extends Controller
 {
@@ -42,8 +43,11 @@ class ProductController extends Controller
 
 
         //redirect the user and send friendly message
-        return redirect()->route('products.index')
-            ->with('success', 'Product created successfully.');
+        Alert::success('Success', 'Product created successfully');
+
+        return redirect()->route('products.create');
+
+
     }
 
     /**
@@ -88,7 +92,15 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //delete the product
+        $product->delete();
+
+        //redirect the user and send friendly message
 
         //redirect the user and display success message
+        Alert::success('Success', 'Product deleted successfully');
+        return redirect()->route('products.index');
+
+
+
     }
 }

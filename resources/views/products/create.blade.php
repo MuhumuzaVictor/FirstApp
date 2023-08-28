@@ -1,6 +1,7 @@
 @extends('products.layout')
 
 @section('content')
+@include('sweetalert::alert')
 
 <div class="row">
     <div class="col-lg-12 margin-tb">

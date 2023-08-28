@@ -1,6 +1,7 @@
 @extends('products.layout')
 
 @section('content')
+@include('sweetalert::alert')
 
 <div class="row">
         <div class="col-lg-12">
@@ -36,8 +37,8 @@
                     <a class="btn btn-info" href="{{ route('products.show',$product->id) }}">Show</a>
                     <a class="btn btn-primary" href="{{ route('products.edit',$product->id) }}">Edit</a>
                     @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    {{-- @method('DELETE') --}}
+                    <button class="btn btn-danger" onclick="confirmation(event)" href="{{ route('products.destroy',$product->id) }}">Delete</button>
                 </form>
             </td>
         </tr>
@@ -47,5 +48,24 @@
     {{ $products->links() }}
 
 
-
 @endsection
+
+<script>
+    function confirmation(ev) {
+        ev.preventDefault();
+        var urlToRedirect = ev.currentTarget.getAttribute('href');
+        Swal({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            buttons: true,
+            dangerMode: true,
+        }).then((willCancel) => {
+            if (willCancel) {
+
+                window.location.href = urlToRedirect;
+
+            }
+        });
+    }
+</script>
