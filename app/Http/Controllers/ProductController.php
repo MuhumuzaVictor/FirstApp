@@ -45,7 +45,7 @@ class ProductController extends Controller
         //redirect the user and send friendly message
         Alert::success('Success', 'Product created successfully');
 
-        return redirect()->route('products.create');
+        return redirect()->route('products.index');
 
 
     }

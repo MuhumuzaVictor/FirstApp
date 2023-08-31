@@ -37,8 +37,8 @@
                     <a class="btn btn-info" href="{{ route('products.show',$product->id) }}">Show</a>
                     <a class="btn btn-primary" href="{{ route('products.edit',$product->id) }}">Edit</a>
                     @csrf
-                    {{-- @method('DELETE') --}}
-                    <button class="btn btn-danger" onclick="confirmation(event)" href="{{ route('products.destroy',$product->id) }}">Delete</button>
+                    @method('DELETE')
+                    <button class="btn btn-danger" href="{{ route('products.destroy',$product->id) }}">Delete</button>
                 </form>
             </td>
         </tr>
